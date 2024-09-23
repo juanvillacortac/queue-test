@@ -10,4 +10,4 @@ La autenticación de los usuarios se basa en verificar hashes basados en bcrypt,
 
 ## Diagrama
 
-![Diagrama de arquitectura](./docs/Diagrama de colas.png)
+![Diagrama de arquitectura](docs/Diagrama de colas.png)
