@@ -1,0 +1,36 @@
+body {
+  --uno: "font-sans";
+}
+
+.skeleton {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  --uno: "bg-gray-500";
+  --uno: "opacity-25";
+}
+
+@keyframes skeleton-loading {
+  0% {
+    transform: skewX(-10deg) translateX(-100%);
+  }
+  100% {
+    transform: skewX(-10deg) translateX(200%);
+  }
+}
+
+.skeleton::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  width: 70%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: skeleton-loading 1.2s infinite;
+}

@@ -1,0 +1,13 @@
+services:
+  queue-server:
+    container_name: queue-server
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - "./volumes/app:/usr/src/app"
+    environment:
+      DATABASE: "/usr/src/app/app.db"
+      JWT_SECRET: prueba
+      ADDRESS: "0.0.0.0:8080"
+    ports:
+      - "8080:8080" # expose ports - HOST:CONTAINER
