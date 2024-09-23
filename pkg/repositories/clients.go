@@ -5,7 +5,6 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/juanvillacortac/bank-queue/pkg/models"
-	"github.com/mattn/go-sqlite3"
 )
 
 var ErrorDuplicatedClient = fmt.Errorf("ya existe un cliente con el DPI suministrado")
@@ -108,10 +107,7 @@ func (repo SQLClientsRepository) CreateClient(client models.Client) (*models.Cli
 		client.ClientType,
 	)
 	if err != nil {
-		if sqliteErr, ok := err.(sqlite3.Error); ok && sqliteErr.Code == sqlite3.ErrConstraint {
-			return nil, ErrorDuplicatedClient
-		}
-		return nil, err
+		return nil, ErrorDuplicatedClient
 	}
 	id, err := result.RowsAffected()
 	if err != nil {

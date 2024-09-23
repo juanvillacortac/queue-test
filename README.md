@@ -8,6 +8,13 @@ El frontend de este sistema está construido utilizando el framework SvelteKit, 
 
 La autenticación de los usuarios se basa en verificar hashes basados en bcrypt, y se manejan las sesiones sin estado usando JWT, que son enviados al cliente en cookies seguras que no se pueden leer con JavaScript, por lo que se evita su manipulación mediante XSS.
 
+## Observaciones
+
+El usuario semilla que se creará para administrar el sistema tiene las siguientes credenciales:
+
+- Email: admin@example.com
+- Password: admin
+
 ## Diagrama
 
 ![Diagrama de arquitectura](docs/Diagrama%20de%20colas.png)

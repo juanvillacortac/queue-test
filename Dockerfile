@@ -8,14 +8,10 @@ COPY . .
 RUN bun i
 RUN bun run build
 
-FROM golang:1.22-alpine AS builder
+FROM golang:1.22 AS builder
 
-# Set Go env
 ENV CGO_ENABLED=0 GOOS=linux
 WORKDIR /go/src
-
-# Install dependencies
-RUN apk --update --no-cache add ca-certificates
 
 COPY --from=frontend /usr/src/app/ .
 
@@ -25,16 +21,15 @@ RUN --mount=type=cache,target=/root/.cache/go-build --mount=type=cache,mode=0755
 
 FROM alpine:latest
 
-COPY --from=builder /go/src/serve /app/
-
 WORKDIR /app
+
+COPY --from=builder /go/src/serve /
 
 RUN apk add --no-cache \
     unzip \
-    ca-certificates \
-    # this is needed only if you want to use scp to copy later your pb_data locally
-    openssh
+    tzdata \
+    ca-certificates
 
 EXPOSE 8080
 
-CMD ["./serve"]
+CMD ["/serve"]

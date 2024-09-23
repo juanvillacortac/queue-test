@@ -59,7 +59,7 @@
         </div>
       {:else}
         <div class="flex w-full h-full items-center justify-center">
-          <p class="text-lg font-bold">Sin clientes en la cola</p>
+          <p class="text-lg font-bold">Sin clientes en el historial</p>
         </div>
       {/each}
     {/if}

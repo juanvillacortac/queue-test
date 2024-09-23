@@ -5,13 +5,13 @@ import (
 
 	"github.com/juanvillacortac/bank-queue/pkg/database/internal/sqlhooks"
 	"github.com/juanvillacortac/bank-queue/pkg/database/internal/sqlhooks/hooks"
-	"github.com/mattn/go-sqlite3"
+	"modernc.org/sqlite"
 )
 
 var SQLiteDriver = "sqlite-driver"
 
 func init() {
-	sql.Register(SQLiteDriver, sqlhooks.Wrap(&sqlite3.SQLiteDriver{}, getHooks()))
+	sql.Register(SQLiteDriver, sqlhooks.Wrap(&sqlite.Driver{}, getHooks()))
 }
 
 func getHooks() sqlhooks.Hooks {
